@@ -1,3 +1,4 @@
+let prevResult = 0;
 
 button.addEventListener('click', getRandom)
 
@@ -8,13 +9,16 @@ function getRandom() {
     const button = document.querySelector("#button");
     const listBan = document.querySelector("#banList")
     const results = document.querySelector('#results')
+
     let arrayBan = listBan.value.split('\n');
         let random = Math.round(firstNumber.value - 0.5 + Math.random() * (lastNumber.value - firstNumber.value + 1));
             for (ban of arrayBan){
-            if (ban == random){
+            if (ban == random || random == prevResult){
                 return getRandom()}
             }
+            
     resultText.innerHTML = random;
+    prevResult = random;
     results.value += (`${random}\n`);
     results.focus();
 }
